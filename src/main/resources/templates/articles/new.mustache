@@ -1,0 +1,19 @@
+{{>layouts/header}}
+
+<!-- form input-->
+<form class="container" action="/articles/create" method="post">
+    <div class="mb-3">
+        <label calss="form-label">Title</label>
+        <input type="text" class="form-control" name="title">
+        <!-- name은 dto 와 동일한 변수명(ArticleForm 의 title)으로, 인풋 데이터를 Dto로 감싼다음 해당 내용을 Entity로 변환 -->
+    </div>
+    <div class="mb-3">
+        <label calss="form-label">Contents</label>
+        <textarea class="form-control" rows="3" name="content"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/articles">back</a>
+</form>
+
+{{>layouts/footer}}
+
