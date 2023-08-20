@@ -13,7 +13,7 @@ import me.iamwooki.toyproject.entity.Comment;
 @ToString
 public class CommentDto {
     private Long id;
-    @JsonProperty("article_id") //json에서 날라오는 값 매칭
+    @JsonProperty("article_id") //json에서 날라오는 값의 변수명과 매칭
     private Long articleId;
     private String nickname;
     private String body;
