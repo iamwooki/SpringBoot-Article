@@ -33,3 +33,21 @@ View - Controller - Model
 - Controller : 웨이터
 - Service : 주방장
 - Repository : 보조 주방장
+
+
+## TEST QA
+1. 예상 시나리오 작성
+   - 테스트 케이스는 크게 성공/실패로 나누어 진행
+   - 조건에 따라 다양한 경우로 작성
+2. 실제 코드결과와 비교하여 검증
+   - 성공 시 리팩토링
+   - 실패 시 디버깅을 통한 수정
+
+### TDD
+Test code -> 통과하는 최소한의 코드로 시작-> 점진적 개선 및 확장
+1. Write a test that fails
+2. Make the code work
+3. Eliminate redundancy
+
+### Article - Comment
+#### comment Entity
