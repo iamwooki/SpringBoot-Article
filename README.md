@@ -2,7 +2,7 @@
 
 - SpringBoot version : 2.7.14
 - OpenJDK version : 11
-
+  `brew install --cask adoptopenjdk/openjdk/adoptopenjdk11`
 
 # Getting Started
 
