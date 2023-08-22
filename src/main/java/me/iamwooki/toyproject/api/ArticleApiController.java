@@ -1,7 +1,7 @@
 package me.iamwooki.toyproject.api;
 
 import lombok.extern.slf4j.Slf4j;
-import me.iamwooki.toyproject.dto.ArticleForm;
+import me.iamwooki.toyproject.dto.ArticleDto;
 import me.iamwooki.toyproject.entity.Article;
 import me.iamwooki.toyproject.repository.ArticleRepository;
 import me.iamwooki.toyproject.service.ArticleService;
@@ -33,7 +33,7 @@ public class ArticleApiController {
     //POST
     //데이터 추가
     @PostMapping("/api/articles/")
-    public ResponseEntity<Article> create(@RequestBody ArticleForm dto){
+    public ResponseEntity<Article> create(@RequestBody ArticleDto dto){
         Article created = articleService.create(dto);
         return (created != null)?
                 ResponseEntity.status(HttpStatus.OK).body(created):
@@ -43,7 +43,7 @@ public class ArticleApiController {
     //데이터 수정
     @PatchMapping("/api/articles/{id}")
     public ResponseEntity<Article> update(@PathVariable Long id,
-                                          @RequestBody ArticleForm dto){
+                                          @RequestBody ArticleDto dto){
         Article updated = articleService.update(id, dto);
         return (updated != null)?
                 ResponseEntity.status(HttpStatus.OK).body(updated):
@@ -59,9 +59,9 @@ public class ArticleApiController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    //트랜잭션 -> 실패 -> 롤백
+    //트랜잭션 -> 실패 시-> 롤백
     @PostMapping("api/transactionTest")
-    public ResponseEntity<List<Article>> trasactionTest(@RequestBody List<ArticleForm> dto){
+    public ResponseEntity<List<Article>> trasactionTest(@RequestBody List<ArticleDto> dto){
         List<Article> createdList= articleService.createArticles(dto);
         return (createdList != null) ?
                 ResponseEntity.status(HttpStatus.OK).body(createdList):

@@ -1,6 +1,6 @@
 package me.iamwooki.toyproject.service;
 
-import me.iamwooki.toyproject.dto.ArticleForm;
+import me.iamwooki.toyproject.dto.ArticleDto;
 import me.iamwooki.toyproject.entity.Article;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +65,7 @@ class ArticleServiceTest {
         //예상
         String title ="라라라라";
         String content="4444";
-        ArticleForm dto = new ArticleForm(null, title, content);
+        ArticleDto dto = new ArticleDto(null, title, content);
         Article expected = new Article(4L, title, content);
 
         //실제
@@ -81,7 +81,7 @@ class ArticleServiceTest {
         //예상
         String title ="라라라라";
         String content="4444";
-        ArticleForm dto = new ArticleForm(4L, title, content);
+        ArticleDto dto = new ArticleDto(4L, title, content);
         Article expected = null;
 
         //실제

@@ -1,7 +1,7 @@
 package me.iamwooki.toyproject.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import me.iamwooki.toyproject.dto.ArticleForm;
+import me.iamwooki.toyproject.dto.ArticleDto;
 import me.iamwooki.toyproject.entity.Article;
 import me.iamwooki.toyproject.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/create")
-    public String createArticle(ArticleForm form){
+    public String createArticle(ArticleDto form){
         //System.out.println(form.toString()); -> 로깅으로 대체!, 서버에서 일어나는 모든 것들을
         log.info(form.toString());
 
@@ -87,7 +87,7 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/update")
-    public String update(ArticleForm form){
+    public String update(ArticleDto form){
         log.info(form.toString());
         // 1. Dto를 Entity로 변환
         Article articleEntity = form.toEntity();

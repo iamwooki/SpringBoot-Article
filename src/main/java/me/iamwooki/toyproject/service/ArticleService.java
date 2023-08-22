@@ -1,7 +1,7 @@
 package me.iamwooki.toyproject.service;
 
 import lombok.extern.slf4j.Slf4j;
-import me.iamwooki.toyproject.dto.ArticleForm;
+import me.iamwooki.toyproject.dto.ArticleDto;
 import me.iamwooki.toyproject.entity.Article;
 import me.iamwooki.toyproject.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +28,13 @@ public class ArticleService {
         return articleRepository.findById(id).orElse(null);
     }
 
-    public Article create(ArticleForm dto) {
+    public Article create(ArticleDto dto) {
         Article article = dto.toEntity();
         if(article.getId() != null) return null; //post 는 수정이 아니므로 PK인 ID를 넣을 경우 error
         return articleRepository.save(article);
     }
 
-    public Article update(Long id, ArticleForm dto) {
+    public Article update(Long id, ArticleDto dto) {
         //1. 수정용 엔티티 생성
         Article article = dto.toEntity();
         log.info("id: {}, article: {}",id, article.toString());
@@ -68,7 +68,7 @@ public class ArticleService {
         return target;
     }
     @Transactional //해당 메소드를 트랜잭션으로 묶음
-    public List<Article> createArticles(List<ArticleForm> dtos) {
+    public List<Article> createArticles(List<ArticleDto> dtos) {
         // dto 묶음을 entity 묶음으로 변환
         List<Article> articleList = dtos.stream()
                 .map(dto -> dto.toEntity())

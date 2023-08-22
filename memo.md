@@ -51,3 +51,19 @@ Test code -> 통과하는 최소한의 코드로 시작-> 점진적 개선 및 �
 
 ### Article - Comment
 #### comment Entity
+
+
+## DTO(데이터 전달)와 VO(값 표현) ref : [10분테크톡](https://www.youtube.com/watch?v=z5fUkck_RZM&list=WL&index=2)
+### DTO(Data Transfer Object): 데이터를 전달하기 위해 사용되는 객체
+- 계층 간 데이터를 전달하기 위한 객체 ex) Controller(Web Layer) <- DTO -> Service(Service Layer)
+- 오직 getter/setter 메소드만 가짐, 다른 로직을 갖지 않음 => 순수하게 데이터 전달을 위해 사용되므로
+- 속성값(value)이 모두 같다고 해서 같은 객체가 아님
+- setter 존재 시 가변, 비 존재시 불변
+
+### VO(Value Object): 값 그 자체를 표현하는 객체
+- VO는 값 자체를 표현하므로 불변객체, setter 성격의 메소드를 포함하면 안되며 생성자를 통해서만 값을 초기화
+- getter/setter외에 로직을 가질 수 있음
+- 속성값(value)이 같으면 같은 객체
+- VO 비교 방식
+  - (참고) Hash(Set, Map, table)의 동등 비교방식은 1) hashCode() 리턴값 비교 2) equals() 리턴 값 비교를 통해 동등객체 확인
+  - 완전한 VO로 만들기 위해서는, equals메소드, hashCode 메소드 모두 오버라이딩 해야함 (value 끼리만 비교하도록)
