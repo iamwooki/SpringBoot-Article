@@ -107,10 +107,9 @@ public class ArticleController {
 
     @DeleteMapping("articles/{id}/delete")
     public String delete(@PathVariable long id, RedirectAttributes rttr){
-
         // 1. 삭제 대상을 가져온다
         Article target = articleRepository.findById(id).orElse(null);
-
+        log.info(target.toString());
         // 2. 대상을 삭제 한다.
         if(target!=null){
             articleRepository.delete(target);

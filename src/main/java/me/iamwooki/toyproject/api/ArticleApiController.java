@@ -3,7 +3,6 @@ package me.iamwooki.toyproject.api;
 import lombok.extern.slf4j.Slf4j;
 import me.iamwooki.toyproject.dto.ArticleDto;
 import me.iamwooki.toyproject.entity.Article;
-import me.iamwooki.toyproject.repository.ArticleRepository;
 import me.iamwooki.toyproject.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
