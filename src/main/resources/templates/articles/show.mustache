@@ -21,7 +21,49 @@
 </table>
 
 <a href="/articles/{{article.id}}/edit" class="btn btn-primary">Edit</a>
-<a href="/articles/{{article.id}}/delete" class="btn btn-danger">Delete</a>
+<!-- <DeleteMapping을 통하여 삭제 전송> html form은 delete 매핑을 지원하지 않음 -->
+<!-- history: http://haah.kr/2017/05/23/rest-http-method-in-html-form/ -->
+<!--  case 1 : form에 hidden 형태로 delete 전송-->
+<form method="POST" action="/articles/{{article.id}}/delete">
+    <input type="hidden" name="_method" value="DELETE">
+    <input class="btn btn-danger" type="submit" value="Delete_form">
+</form>
+<!-- Case 2 : ajax를 이용하여 삭제 요청-->
+<button id="deleteArticle" class="btn btn-danger" onclick="deleteArticle({{article.id}})">Delete_ajax</button>
+<!-- Case 3 : ajax data-id를 이용하여 삭제 요청-->
+<button data-id={{article.id}} class="btn btn-danger">Delete_ajax2</button>
+<!--<GetMapping을 통하여 삭제 전송>-->
+<a href="/articles/{{article.id}}/delete" class="btn btn-danger">Delete_GetMapping</a>
 <a href="/articles">Go to Article List</a>
+
+<script>
+    function deleteArticle(id) {
+        // https://cloudstudying.kr/lectures/448
+        // fetch(URL, HTTP_REQUEST)
+        fetch('/api/articles/' + id, {
+            method: 'DELETE', // DELETE 방식! HTTP 요청.
+        }).then(function(response) { // 응답 처리!
+            // 요청 성공!
+            if (response.ok) {
+                alert('글이 삭제 되었습니다.');
+                window.location.href='/articles'; // 목록 페이지로 이동!(리다이렉트)
+            } else { // 요청 실패..
+                alert('글을 삭제할 수 없습니다.');
+            }
+        });
+    }
+
+    $("#deleteArticle").click(function (e) {
+        $.ajax({
+            url: "/article/"+e.target.dataset.id,
+            method: "DELETE",
+            dataType: "text",
+            success: function (data) {
+                $('#deleteArticle').val(data)
+                console.log(data)
+            }
+        })
+    })
+</script>
 {{>layouts/footer}}
 
