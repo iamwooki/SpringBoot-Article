@@ -153,8 +153,9 @@ View - Controller - Model
          - HTML의 경우 하이퍼미디어를 통한 앱 상태 변경 : Anchor tag를 활용, a 태그를 통해 다른 리소스에 접근 가능하며 클라이언트가 어플리케이션의 상태를 동적으로 변경할 수 있으므로 HATEOAS.
          - 홈페이지를 시작으로 숨겨진 페이지, 숨겨진 기능이 존재한다면 HATEOAS 위배
          - 일반적으로 front - back end 사이에서 JSON으로 구성하여 주고 받아, 위배 상황이 많으나, JSON에 서버에 보낼 수 있는 요청 정보인 URI 등을 포함하여 클라이언트에 전달하면 위배하지 않는다고 주장
-
-
+=> 실제로 대부분의 RESTful API라고 불리는 것들이 완전히 REST를 따르지 않는 경우가 많음
+=> 엄연히 따지면 HTTP API라고 불러야함
+=> REST의 핵심은 클라이언트와 서버 간의 결합도를 낮춰 독립적인 진화를 할 수 있게 하는 것
 ref)
 - Test Site : jsonplaceholder.typicode.com
 - Tool : Talend API TEST를 통해 연습
