@@ -2,8 +2,10 @@ package me.iamwooki.toyproject.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import me.iamwooki.toyproject.dto.ArticleDto;
+import me.iamwooki.toyproject.dto.CommentDto;
 import me.iamwooki.toyproject.entity.Article;
 import me.iamwooki.toyproject.repository.ArticleRepository;
+import me.iamwooki.toyproject.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,9 @@ import java.util.Optional;
 public class ArticleController {
     @Autowired // 스프링부트가 미리 생성해놓은 객체를 가져다가 자동 연결
     private ArticleRepository articleRepository;
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/articles/new")
     public String newArticleForm(){
@@ -48,12 +53,13 @@ public class ArticleController {
         log.info("id - " +id);
         // front end <- controller(Model) <-  Entity <- Repository <- Data(id) <- DB
         // 1. id로 데이터 가져옴, Repo에 저장된 값을 id 키로 가져와서 Entity화 시킴
-        Article articleEntity = articleRepository.findById(id).orElse(null); //
+        Article articleEntity = articleRepository.findById(id).orElse(null);
         // orElse(null) => 데이터가 없는 경우도 처리해야함
         //또는 Optional<Article> articleEntity = articleRepository.findById(id);
-
+        List<CommentDto> commentDtos = commentService.comments(id);
         // 2. 가져온 데이터를 model에 등록, 가져온 Entity를 DTO(Model)형식으로 바꿔서, 페이지에 뿌려줄 수 있도록
         model.addAttribute("article", articleEntity);
+        model.addAttribute("commentDtos",commentDtos);
 
         // 3. 보여줄 페이지 설정
         return "articles/show";

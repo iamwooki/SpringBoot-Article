@@ -222,3 +222,7 @@ Test code -> 통과하는 최소한의 코드로 시작-> 점진적 개선 및 �
   - (참고) Hash(Set, Map, table)의 동등 비교방식은 1) hashCode() 리턴값 비교 2) equals() 리턴 값 비교를 통해 동등객체 확인
   - 완전한 VO로 만들기 위해서는, equals메소드, hashCode 메소드 모두 오버라이딩 해야함 (value 끼리만 비교하도록)
 
+### JavaScript 
+- document.querySelector() : 버튼 변수 화
+- addEventListener() : 동작 실행
+- fetch() : REST API CALL

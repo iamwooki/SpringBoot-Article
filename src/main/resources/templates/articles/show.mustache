@@ -23,7 +23,7 @@
 <a href="/articles/{{article.id}}/edit" class="btn btn-primary">Edit</a>
 <!-- <DeleteMapping을 통하여 삭제 전송> html form은 delete 매핑을 지원하지 않음 -->
 <!-- history: http://haah.kr/2017/05/23/rest-http-method-in-html-form/ -->
-<!--  case 1 : form에 hidden 형태로 delete 전송-->
+<!--  case 1 : DeleteMapping으로 선언 시 form에 hidden 형태로 delete 전송-->
 <form method="POST" action="/articles/{{article.id}}/delete">
     <input type="hidden" name="_method" value="DELETE">
     <input class="btn btn-danger" type="submit" value="Delete_form">
@@ -35,6 +35,8 @@
 <!--<GetMapping을 통하여 삭제 전송>-->
 <a href="/articles/{{article.id}}/delete" class="btn btn-danger">Delete_GetMapping</a>
 <a href="/articles">Go to Article List</a>
+
+{{>comments/_comments}}
 
 <script>
     function deleteArticle(id) {
@@ -52,18 +54,18 @@
             }
         });
     }
-
-    $("#deleteArticle").click(function (e) {
-        $.ajax({
-            url: "/article/"+e.target.dataset.id,
-            method: "DELETE",
-            dataType: "text",
-            success: function (data) {
-                $('#deleteArticle').val(data)
-                console.log(data)
-            }
-        })
-    })
+    //미완성
+    // $("#deleteArticle").click(function (e) {
+    //     $.ajax({
+    //         url: "/article/"+e.target.dataset.id,
+    //         method: "DELETE",
+    //         dataType: "text",
+    //         success: function (data) {
+    //             $('#deleteArticle').val(data)
+    //             console.log(data)
+    //         }
+    //     })
+    // })
 </script>
 {{>layouts/footer}}
 
